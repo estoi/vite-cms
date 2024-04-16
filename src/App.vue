@@ -21,13 +21,6 @@ const locales = {
   en: [enUS, dateEnUS]
 };
 
-const themeOverrides = {
-  common: {
-    primaryColor: '#6181FF',
-    primaryColorHover: '#6181FF'
-  }
-};
-
 const { loadingBar } = createDiscreteApi(['loadingBar'], {
   loadingBarProviderProps: {
     themeOverrides: {
@@ -50,7 +43,7 @@ router.afterEach(() => {
     :locale="locales[locale.locale][0]"
     :date-locale="locales[locale.locale][1]"
     :theme="theme.dark ? darkTheme : null"
-    :theme-overrides="themeOverrides"
+    :theme-overrides="theme.themeOverrides"
   >
     <router-view></router-view>
   </n-config-provider>

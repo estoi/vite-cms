@@ -4,10 +4,12 @@
     "about": "About",
     "signIn": "sign in",
     "signUp": "sign out",
+    "logout": "Log out",
     "message": "Message",
     "notice": "Notice",
     "read": "Read",
-    "unread": "Unread"
+    "unread": "Unread",
+    "profile": "Profile"
   },
   "route": {
     "dashboard": "Dashboard",

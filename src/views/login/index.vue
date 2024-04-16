@@ -30,7 +30,7 @@ const onLogin = () => {
 </script>
 <template>
   <div class="h-screen w-screen relative flex flex-items-start bg-#6181FF">
-    <img class="h-full" src="assets/bg.png" alt="" />
+    <img class="h-full" src="assets/images/bg.png" alt="" />
     <div
       class="login-form box-border px-40px pt-40px absolute w-426px h-472px bg-white rounded-32px right-50 top-50% translate-y--50%"
     >

@@ -13,9 +13,16 @@ const options = router.options.routes
 const sidebar = useSidebarStore();
 const menu = useMenuStore();
 const tags = useTagsStore();
-
 const menuOptions = ref();
+const menuRef = ref();
 const { t } = VueI18n.useI18n();
+
+// watchEffect(() => {
+//   menuRef.value?.showOption(menu.selectedKey);
+// });
+watch(menu, (v) => {
+  menuRef.value?.showOption(v.selectedKey);
+});
 
 const traverseTree = (tree) => {
   for (let i in tree) {
@@ -54,6 +61,8 @@ traverseTree(options);
     :collapsed="sidebar.collapsed"
   >
     <n-menu
+      accordion
+      ref="menuRef"
       :options="menuOptions"
       key-field="name"
       label-field="title"

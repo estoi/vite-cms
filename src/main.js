@@ -10,6 +10,7 @@ import i18n from '~/locales';
 
 import '@unocss/reset/normalize.css';
 import '@unocss/reset/tailwind.css';
+import 'assets/styles/index.scss';
 
 import 'virtual:uno.css';
 

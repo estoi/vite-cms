@@ -12,17 +12,20 @@ import { Wind } from '@vicons/fa';
 import {
   DarkModeOutlined,
   LightModeOutlined,
-  TranslateOutlined
+  TranslateOutlined,
+  ColorLensOutlined
 } from '@vicons/material';
+import { useI18n } from 'vue-i18n';
 import { useSidebarStore } from '~/store/modules/sidebar';
 import { useThemeStore } from '~/store/modules/theme';
 import { useLocaleStore } from '~/store/modules/locale';
 import { useTagsStore } from '~/store/modules/tags';
 import { useMenuStore } from '~/store/modules/menu';
 import { langs } from '~/locales';
-import { h } from 'vue';
+import vTags from '../tags/index.vue';
 
 const router = useRouter();
+const { t } = useI18n();
 const sidebar = useSidebarStore();
 const theme = useThemeStore();
 const locale = useLocaleStore();
@@ -30,7 +33,7 @@ const tags = useTagsStore();
 const menu = useMenuStore();
 const settings = [
   {
-    label: '用户资料',
+    label: () => h('p', null, { default: () => t('common.profile') }),
     key: 0,
     icon: () =>
       h(Icon, null, {
@@ -38,7 +41,7 @@ const settings = [
       })
   },
   {
-    label: '退出',
+    label: () => h('p', null, { default: () => t('common.logout') }),
     key: 1,
     icon: () =>
       h(Icon, null, {
@@ -47,7 +50,7 @@ const settings = [
   }
 ];
 
-const items = Array.from({ length: 1000 }, (_, i) => ({
+const items = Array.from({ length: 100 }, (_, i) => ({
   key: i,
   value: i,
   title: '这是一条消息'
@@ -62,7 +65,7 @@ const handleSelect = (e) => {
   } else {
     tags.closeAllTags();
     menu.setSelectedKey('workbench');
-    theme.setTheme(false);
+    theme.setDark(false);
     router.replace('/login');
   }
 };
@@ -82,6 +85,9 @@ const handleSelect = (e) => {
           <MenuFoldOutlined v-else></MenuFoldOutlined>
         </Icon>
       </div>
+      <n-divider vertical />
+      <v-tags class="max-w-60vw mx-10"></v-tags>
+      <n-divider vertical />
       <div class="flex items-center pr-4 ml-auto">
         <n-space>
           <n-button quaternary circle @click="toggleDark">
@@ -90,6 +96,34 @@ const handleSelect = (e) => {
               <DarkModeOutlined v-else></DarkModeOutlined>
             </n-icon>
           </n-button>
+          <n-popover
+            content-class="h-100px flex flex-items-center"
+            :width="200"
+            trigger="click"
+          >
+            <template #trigger>
+              <n-button quaternary circle>
+                <n-icon size="20px">
+                  <ColorLensOutlined></ColorLensOutlined>
+                </n-icon>
+              </n-button>
+            </template>
+            <template #default>
+              <n-color-picker
+                v-model:value="theme.themeOverrides.common.primaryColor"
+                :mode="['hex']"
+                :show-alpha="false"
+                :swatches="[
+                  '#6181FF',
+                  '#D9138A',
+                  '#12A4D9',
+                  '#4203C9',
+                  '#6883BC',
+                  '#77C593'
+                ]"
+              />
+            </template>
+          </n-popover>
           <n-popover :width="300" trigger="click">
             <template #trigger>
               <n-badge dot :offset="[-5, 10]">

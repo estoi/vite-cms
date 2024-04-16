@@ -4,10 +4,12 @@
     "about": "关于",
     "signIn": "登录",
     "signUp": "注册",
+    "logout": "退出",
     "message": "消息",
     "notice": "通知",
     "read": "已读",
-    "unread": "未读"
+    "unread": "未读",
+    "profile": "用户信息"
   },
   "route": {
     "dashboard": "仪表盘",

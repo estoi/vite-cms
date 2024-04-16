@@ -108,9 +108,12 @@ const setTags = (route) => {
 setTags(route);
 </script>
 <template>
-  <div class="backdrop-blur-sm mb-20px">
+  <div class="backdrop-blur-sm">
     <n-scrollbar x-scrollable>
       <n-space class="flex-nowrap!">
+        <!-- <n-tag :closable="canDelete" v-for="item in 100" :key="item">
+          {{ 'Tags' }}
+        </n-tag> -->
         <n-tag
           :closable="canDelete"
           v-for="item in tags.list"
